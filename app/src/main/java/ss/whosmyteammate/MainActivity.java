@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("DEBUG", " > oncreate");
         setContentView(R.layout.activity_main);
 
         addControls();
@@ -35,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         GameEntry entry = new GameEntry("Civilization V", "Civ");
         mGameEntries.add(entry);
 
-        Log.d("DEBUG", " >"+mGameEntries);
         listView = findViewById(R.id.game_entry_list_view);
         GameEntryAdapter listAdapter = new
                 GameEntryAdapter(MainActivity.this, mGameEntries);
