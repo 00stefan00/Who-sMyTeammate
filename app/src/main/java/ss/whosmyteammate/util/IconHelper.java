@@ -32,7 +32,7 @@ public class IconHelper {
 
     public static TextDrawable getCallerIconTextDrawable (String string, int color) {
         TextDrawable textDrawable = TextDrawable.builder()
-                .buildRound(string, color);
+                .buildRect(string, color);
         return textDrawable;
     }
 

@@ -1,7 +1,6 @@
 package ss.whosmyteammate.Adapters;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +43,7 @@ public class GameEntryAdapter extends BaseAdapter{
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater = mActivity.getLayoutInflater();
         View rowView= inflater.inflate(R.layout.list_item, null, true);
-        TextView txtTitle = rowView.findViewById(R.id.list_item_textView);
+        TextView txtTitle = rowView.findViewById(R.id.list_item_textView_title);
         ImageView imageView = rowView.findViewById(R.id.list_item_imageView);
 
         GameEntry entry = mGameEntries.get(position);
