@@ -8,18 +8,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import java.util.ArrayList;
 
 import ss.whosmyteammate.R;
 import ss.whosmyteammate.models.GameEntry;
 
-public class GameEntryAdapter extends BaseAdapter{
+public class GameEntryExtraAdapter extends BaseAdapter{
 
     private final Activity mActivity;
     private ArrayList<GameEntry> mGameEntries;
 
-    public GameEntryAdapter(Activity activity, ArrayList<GameEntry> gameEntries) {
+    public GameEntryExtraAdapter(Activity activity, ArrayList<GameEntry> gameEntries) {
         this.mActivity = activity;
         this.mGameEntries = gameEntries;
     }
@@ -42,9 +41,9 @@ public class GameEntryAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater = mActivity.getLayoutInflater();
-        View rowView= inflater.inflate(R.layout.list_item_game_entry, null, true);
-        TextView txtTitle = rowView.findViewById(R.id.list_item_game_entry_textView_title);
-        ImageView imageView = rowView.findViewById(R.id.list_item_game_entry_imageView);
+        View rowView= inflater.inflate(R.layout.list_item_game_entry_extra, null, true);
+        TextView txtTitle = rowView.findViewById(R.id.list_item_extra_textView_title);
+        ImageView imageView = rowView.findViewById(R.id.list_item_extra_textView_subtext);
 
         GameEntry entry = mGameEntries.get(position);
         txtTitle.setText(entry.getName());

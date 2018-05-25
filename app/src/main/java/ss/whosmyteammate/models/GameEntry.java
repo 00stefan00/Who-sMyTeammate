@@ -15,7 +15,8 @@ public class GameEntry {
 
     public GameEntry(String name, String tag) {
         mName = name;
-        mGameIcon = IconHelper.getCallerIconBitmap(tag, Color.BLUE);
+        mTag = tag;
+        mGameIcon = IconHelper.getCallerIconBitmap(mTag, Color.BLUE);
     }
 
     public String getName() {
@@ -25,5 +26,7 @@ public class GameEntry {
     public Bitmap getGameIcon() {
         return mGameIcon;
     }
+
+    public String getTag() { return mTag; }
 
 }

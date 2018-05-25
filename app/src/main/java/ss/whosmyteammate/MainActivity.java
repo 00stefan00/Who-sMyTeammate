@@ -1,9 +1,8 @@
 package ss.whosmyteammate;
 
-import android.graphics.Bitmap;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -22,7 +20,10 @@ import ss.whosmyteammate.models.GameEntry;
 public class MainActivity extends AppCompatActivity {
 
     private ListView listView;
-    private ArrayList<GameEntry> mGameEntries = new ArrayList<>();
+    private GameEntryAdapter mListAdapter;
+
+    private static ArrayList<GameEntry> mGameEntries = new ArrayList<>();
+    private static boolean initialized = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,21 +31,40 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         addControls();
-
-        GameEntry entry = new GameEntry("Civilization V", "Civ");
-        mGameEntries.add(entry);
+        if (!initialized) {
+            initialize();
+        }
 
         listView = findViewById(R.id.game_entry_list_view);
-        GameEntryAdapter listAdapter = new
-                GameEntryAdapter(MainActivity.this, mGameEntries);
-        listView.setAdapter(listAdapter);
+        mListAdapter = new GameEntryAdapter(MainActivity.this, mGameEntries);
+
+        listView.setAdapter(mListAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                Toast.makeText(MainActivity.this, "You Clicked", Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent myIntent = new Intent(MainActivity.this, GameEntryActivity.class);
+                Log.d("Debug", ">> " + position);
+                myIntent.putExtra("position", position);
+                MainActivity.this.startActivity(myIntent);
             }
         });
+    }
+
+    private void initialize() {
+        addToGameEntryArray(new GameEntry("Civilization V", "Civ"));
+        addToGameEntryArray(new GameEntry("Risk", "Risk"));
+    }
+
+    public static void addToGameEntryArray(GameEntry gameEntry) {
+        mGameEntries.add(gameEntry);
+    }
+
+    public static GameEntry getFromGameEntryArray(int position) {
+        return mGameEntries.get(position);
+    }
+
+    public static void removeFromGameEntryArray(int position) {
+        mGameEntries.remove(position);
     }
 
     private void addControls() {Toolbar toolbar = findViewById(R.id.toolbar);
@@ -54,10 +74,16 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent myIntent = new Intent(MainActivity.this, GameEntryActivity.class);
+                MainActivity.this.startActivity(myIntent);
             }
         });
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        mListAdapter.notifyDataSetChanged();
     }
 
     @Override

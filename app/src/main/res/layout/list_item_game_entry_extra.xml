@@ -3,21 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/list_item_imageView"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:padding="5dp"
-        android:src="@drawable/ic_launcher_foreground" />
-
     <TextView
-        android:id="@+id/list_item_textView_title"
+        android:id="@+id/list_item_extra_textView_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/list_item_imageView"
         android:text="Lorem Ipsum"
         android:textAllCaps="false"
         android:textColor="#000"
@@ -25,11 +15,11 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/list_item_textView_subtext"
+        android:id="@+id/list_item_extra_textView_subtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/list_item_imageView"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/list_item_extra_textView_title"
         android:text="Lorem Ipsum"
         android:textAlignment="viewStart"
         android:textColor="#000"
